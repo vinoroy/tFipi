@@ -86,7 +86,8 @@ def loadPortfolio(dbFile):
 
 #
 
-app = dash.Dash()
+app = dash.Dash(__name__)
+server = app.server
 
 
 
@@ -94,7 +95,7 @@ app = dash.Dash()
 app.css.append_css({'external_url': 'https://codepen.io/chriddyp/pen/bWLwgP.css'})
 
 # load the screen loading CSS
-app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/brPBPO.css"})
+#app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/brPBPO.css"})
 
 # create a dictionary of the available portfolios
 availPortfolios = [{'label': 'regular', 'value': 'reg.json'},
@@ -348,7 +349,6 @@ app.layout = html.Div([
 #
 #
 #     return ff.create_table(app.config['PORT'].summary)
-
 
 
 if __name__ == '__main__':
