@@ -50,83 +50,14 @@ class Portfolio(object):
         """
 
         # load the db from file
-        #db = TinyDB(self.portfolioDBFile)
+        db = TinyDB(self.portfolioDBFile)
 
 
-
-        assets = {u'1': {u'assetID': u'MFC',
-                         u'assetType': u'COMMON',
-                         u'debtFeedRef': None,
-                         u'debtFeedType': None,
-                         u'percentOwnership': 1,
-                         u'priceFeedRef': u'MFC.TO',
-                         u'priceFeedType': u'YAHOO',
-                         u'purchaseDate': u'2018-02-23',
-                         u'purchasePrice': 24.609,
-                         u'saleDate': None,
-                         u'salePrice': None,
-                         u'thresholds': [],
-                         u'volume': 700},
-                  u'2': {u'assetID': u'HydroOne',
-                         u'assetType': u'COMMON',
-                         u'debtFeedRef': None,
-                         u'debtFeedType': None,
-                         u'percentOwnership': 1,
-                         u'priceFeedRef': u'H.TO',
-                         u'priceFeedType': u'YAHOO',
-                         u'purchaseDate': u'2015-11-05',
-                         u'purchasePrice': 20.5,
-                         u'saleDate': None,
-                         u'salePrice': None,
-                         u'thresholds': [],
-                         u'volume': 500},
-                  u'3': {u'assetID': u'Pembina',
-                         u'assetType': u'COMMON',
-                         u'debtFeedRef': None,
-                         u'debtFeedType': None,
-                         u'percentOwnership': 1,
-                         u'priceFeedRef': u'PPL.TO',
-                         u'priceFeedType': u'YAHOO',
-                         u'purchaseDate': u'2018-02-16',
-                         u'purchasePrice': 41.486,
-                         u'saleDate': None,
-                         u'salePrice': None,
-                         u'thresholds': [],
-                         u'volume': 410},
-                  u'4': {u'assetID': u'Rogers',
-                         u'assetType': u'COMMON',
-                         u'debtFeedRef': None,
-                         u'debtFeedType': None,
-                         u'percentOwnership': 1,
-                         u'priceFeedRef': u'RCI-B.TO',
-                         u'priceFeedType': u'YAHOO',
-                         u'purchaseDate': u'2018-02-16',
-                         u'purchasePrice': 58.663,
-                         u'saleDate': None,
-                         u'salePrice': None,
-                         u'thresholds': [],
-                         u'volume': 300},
-                  u'5': {u'assetID': u'BCE',
-                         u'assetType': u'COMMON',
-                         u'debtFeedRef': None,
-                         u'debtFeedType': None,
-                         u'percentOwnership': 1,
-                         u'priceFeedRef': u'BCE.TO',
-                         u'priceFeedType': u'YAHOO',
-                         u'purchaseDate': u'1997-12-12',
-                         u'purchasePrice': 2.858,
-                         u'saleDate': None,
-                         u'salePrice': None,
-                         u'thresholds': [],
-                         u'volume': 179}}
 
 
 
         # for each asset in the db
-        #for asset in db:
-
-        for i in range(1, len(assets) + 1):
-            asset = assets[str(i)]
+        for asset in db:
 
             # create the asset
             newAsset = st.CommonStock(asset['assetID'],
