@@ -194,19 +194,33 @@ app.layout = html.Div([
 
 
 
-# portfolio update. This is performed onyl when a new portfolio is selected
+# update asset menu options. This is performed onyl when a new portfolio is selected
 @app.callback(
     Output(component_id='asset_menu', component_property='options'),
     [Input(component_id='portfolio_name_menu', component_property='value')]
 )
-def update_portfolio(input_value):
-
+def update_asset_menu_options(input_value):
 
     # load the selected portfolio
     loadPortfolio(input_value)
 
     # return to the asset selection menu the new list of assets in the menu form (labal and value)
     return app.config['MENU']
+
+
+
+# update asset menu value. This is performed only when the asset menu options is updates
+@app.callback(
+    Output(component_id='asset_menu', component_property='value'),
+    [Input(component_id='asset_menu', component_property='options')]
+)
+def update_asset_menu_value(input_value):
+
+
+    # return to the asset selection menu the new list of assets in the menu form (labal and value)
+    return app.config['MENU'][0]['label']
+
+
 
 
 # portfolio graf callback. This is performed if a new portfolio graf type is selected or when a new portfolio is
@@ -280,7 +294,6 @@ def update_portfolio_graf(input_value1,input_value2):
 )
 def update_asset_graf(input_value1,input_value2,input_value3):
 
-
     # get the asset index from input value 1
     assetIdx = app.config['PORT'].getAssetIdx(input_value1)
 
@@ -340,7 +353,6 @@ def update_asset_graf(input_value1,input_value2,input_value3):
      Input(component_id='portfolio_graf_type', component_property='value')]
 )
 def update_portfolio_table(input_value,input2):
-
 
     return ff.create_table(app.config['PORT'].summary)
 

@@ -53,9 +53,6 @@ class Portfolio(object):
         db = TinyDB(self.portfolioDBFile)
 
 
-
-
-
         # for each asset in the db
         for asset in db:
 
