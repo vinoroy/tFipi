@@ -1,6 +1,9 @@
 TODO
 ----
 
+ - must install venv
+ - mus install beautiful soup
+
 P1
 ---
  - create the preferred stock class
