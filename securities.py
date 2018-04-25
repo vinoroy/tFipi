@@ -10,6 +10,8 @@ This module implements the concrete securities classes
 
 from asset import *
 from pandas_datareader import data as pdr
+import datetime
+from bs4 import BeautifulSoup
 
 
 
@@ -23,8 +25,8 @@ class Security(Asset):
     """
 
 
-    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker):
-        Asset.__init__(self, assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker)
+    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType):
+        Asset.__init__(self, assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType)
 
 
 
@@ -37,8 +39,8 @@ class Equity(Security):
 
     """
 
-    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker):
-        Security.__init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker)
+    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType):
+        Security.__init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType)
 
 
 
@@ -54,8 +56,8 @@ class CommonStock(Equity):
 
     """
 
-    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker):
-        Equity.__init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker)
+    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType):
+        Equity.__init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType)
         self.assetType = 'COMMON'
 
 
@@ -97,10 +99,35 @@ class PreferredStock(Equity):
 
     """
 
-    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker):
-        Equity.__init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker)
+    def __init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType):
+        Equity.__init__(self,assetID, purchaseDate, purchasePrice, saleDate, salePrice, volume, percentOwnership,ticker,feedType)
         self.assetType = 'PREFERRED'
 
+
+
+
+
+
+    def getHistoricalPrice(self, startDate, endDate):
+        """
+        Gets the historical prices (open, low, high, close, adj close and volume) between a set of dates 
+
+        Args :
+        - startDate : (string) start date of the extraction (format YY-MM-DD)
+        - endDate : (string) end date of the extraction (format YY-MM-DD)
+
+        Return :
+            - (Dataframe) open, low, high, close, adj close and volume matrix between a set of dates 
+        """
+
+
+        if self.feedType == 'preferredstockchannel':
+
+            pass
+
+        elif self.feedType == 'tmxmoney':
+
+            pass
 
 
 

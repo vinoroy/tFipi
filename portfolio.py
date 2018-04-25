@@ -64,7 +64,8 @@ class Portfolio(object):
                                       asset['salePrice'],
                                       asset['volume'],
                                       asset['percentOwnership'],
-                                      asset['priceFeedRef'])
+                                      asset['priceFeedRef'],
+                                      asset['priceFeedType'])
 
 
             # append the nes asset to the list of assets in the portfolio

@@ -1,0 +1,16 @@
+TODO
+----
+
+P1
+---
+ - create the preferred stock class
+ - add a summary for the % est profit of the portfolio
+ - verify the annual return
+ - add titles to the grafs
+ - create assets
+
+
+P2
+---
+- develop the code for realEstate asset
+

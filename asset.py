@@ -62,7 +62,7 @@ class Asset(object):
     """
 
 
-    def __init__(self,assetID='', purchaseDate=None, purchasePrice=None, saleDate=None, salePrice=None, volume=None, percentOwnership=None,ticker=None):
+    def __init__(self,assetID='', purchaseDate=None, purchasePrice=None, saleDate=None, salePrice=None, volume=None, percentOwnership=None,ticker=None,feedType=None):
         self.assetID = assetID
         self.assetType = ''
         self.purchaseDate = purchaseDate
@@ -72,11 +72,12 @@ class Asset(object):
         self.volume = volume
         self.percentOwnership = percentOwnership
         self.ticker = ticker
+        self.feedType = feedType
         self.perfMatrix = []
         self.perfVector = []
         self.annualReturn = []
 
-
+        # set the asset data that come from calculations
         self.setAssetData()
 
 
