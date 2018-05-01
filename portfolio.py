@@ -14,6 +14,8 @@ import numpy as np
 
 
 
+
+
 class Portfolio(object):
     """
     This class is the portfolio class. The class is responsible for holding and mangaing the assets in a given portfolio
@@ -56,16 +58,32 @@ class Portfolio(object):
         # for each asset in the db
         for asset in db:
 
-            # create the asset
-            newAsset = st.CommonStock(asset['assetID'],
-                                      asset['purchaseDate'],
-                                      asset['purchasePrice'],
-                                      asset['saleDate'],
-                                      asset['salePrice'],
-                                      asset['volume'],
-                                      asset['percentOwnership'],
-                                      asset['priceFeedRef'],
-                                      asset['priceFeedType'])
+
+            if asset['assetType'] == 'COMMON':
+
+                # create the asset
+                newAsset = st.CommonStock(asset['assetID'],
+                                          asset['purchaseDate'],
+                                          asset['purchasePrice'],
+                                          asset['saleDate'],
+                                          asset['salePrice'],
+                                          asset['volume'],
+                                          asset['percentOwnership'],
+                                          asset['priceFeedRef'],
+                                          asset['priceFeedType'])
+
+            elif asset['assetType'] == 'PREFFERED':
+
+                # create the asset
+                newAsset = st.PreferredStock(asset['assetID'],
+                                          asset['purchaseDate'],
+                                          asset['purchasePrice'],
+                                          asset['saleDate'],
+                                          asset['salePrice'],
+                                          asset['volume'],
+                                          asset['percentOwnership'],
+                                          asset['priceFeedRef'],
+                                          asset['priceFeedType'])
 
 
             # append the nes asset to the list of assets in the portfolio

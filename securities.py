@@ -14,6 +14,13 @@ import datetime
 from bs4 import BeautifulSoup
 
 
+import urllib2
+import pandas as pd
+
+import datetime
+
+
+
 
 class Security(Asset):
     """
@@ -121,17 +128,56 @@ class PreferredStock(Equity):
         """
 
 
-        if self.feedType == 'preferredstockchannel':
+        if self.feedType == 'PREFSTOCKCHANNEL':
 
-            pass
+            pageURL = 'https://www.preferredstockchannel.com/symbol/enb.prv.ca/'
+            page = urllib2.urlopen(pageURL)
+            parsedPage = BeautifulSoup(page)
 
-        elif self.feedType == 'tmxmoney':
+            categories = parsedPage.find_all('td', attrs={'class': 'dsty'})
 
-            pass
+            for idx in range(len(categories)):
+                if categories[idx].text == 'Recent Market Price:':
+                    break
+
+            stockPrice = parsedPage.find_all('td', attrs={'class': 'dstyb'})[idx].text
+
+            stockPrice = float(stockPrice.strip('$'))
+
+            entries = [stockPrice, stockPrice, stockPrice, stockPrice, stockPrice, 1]
+
+            dateNow = datetime.datetime.now().strftime("%Y-%m-%d")
+            ref = pdr.DataReader('IBM', data_source='yahoo', start=dateNow, end=dateNow)
+            lastTradingDay = ref.index[0].strftime("%Y-%m-%d")
+
+            result = pd.DataFrame([entries], columns=['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'],
+                              index=pd.date_range(lastTradingDay, periods=1))
 
 
 
+        elif self.feedType == 'TMX':
 
+            pageURL = self.ticker
+
+            page = urllib2.urlopen(pageURL)
+            parsedPage = BeautifulSoup(page,"lxml")
+
+            stockPrice = float(parsedPage.find('div', attrs={'class': 'quote-price priceLarge'}).find('span').text)
+
+            volume = parsedPage.find('div', attrs={'class': 'quote-volume volumeLarge'}).text.strip()[8:].strip()
+            volume = float(volume.replace(',', ''))
+
+            entries = [stockPrice, stockPrice, stockPrice, stockPrice, stockPrice, volume]
+
+            dateNow = datetime.datetime.now().strftime("%Y-%m-%d")
+            ref = pdr.DataReader('IBM', data_source='yahoo', start=dateNow, end=dateNow)
+            lastTradingDay = ref.index[0].strftime("%Y-%m-%d")
+
+            result = pd.DataFrame([entries], columns=['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'],
+                              index=pd.date_range(lastTradingDay, periods=1))
+
+
+        return result
 
 
 

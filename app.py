@@ -97,7 +97,7 @@ app.css.append_css({"external_url": "https://codepen.io/chriddyp/pen/brPBPO.css"
 # create a dictionary of the available portfolios
 availPortfolios = [{'label': 'regular', 'value': 'reg.json'},
                     {'label': 'fiducie Amelie', 'value': 'fidAmelie.json'},
-                    {'label': 'aa', 'value': 'aa'}]
+                    {'label': 'test', 'value': 'fiDB.json'}]
 
 
 
@@ -124,7 +124,7 @@ app.layout = html.Div([
                     options=[
                         {'label': 'regular', 'value': 'reg.json'},
                         {'label': 'fiducie Amelie', 'value': 'fidAmelie.json'},
-                        {'label': 'aa', 'value': 'aa'}],
+                        {'label': 'test', 'value': 'fiDB.json'}],
                     value='reg.json'
                     )
                 ],style={'width': '150px'}),

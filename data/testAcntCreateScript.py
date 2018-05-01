@@ -38,26 +38,36 @@ db.insert({'assetID': 'Telus',
 
 
 
-# insert Apple
-db.insert({'assetID': 'Apple',
-           'assetType':'COMMON',
+# insert BCE preffered stonk
+db.insert({'assetID': 'BCE PFD SER AQ',
+           'assetType':'PREFFERED',
            'purchaseDate': '2009-12-01',
-           'purchasePrice':30.2,
-           'volume':1000,
+           'purchasePrice':22.627,
+           'volume':450,
            'saleDate':None,
            'salePrice':None,
-           'priceFeedType':'YAHOO',
-           'priceFeedRef':'AAPL',
+           'priceFeedType':'TMX',
+           'priceFeedRef':'https://web.tmxmoney.com/quote.php?qm_symbol=BCE.PR.Q',
            'debtFeedType':None,
            'debtFeedRef':None,
            'percentOwnership':1,
            'thresholds':[]})
 
 
-
-
-# AAPL dec 1 2009 30.10
-
+# insert enbridge preffered stonk
+db.insert({'assetID': 'ENB PFD SER 3',
+           'assetType':'PREFFERED',
+           'purchaseDate': '2009-12-01',
+           'purchasePrice':25,
+           'volume':600,
+            'saleDate':None,
+           'salePrice':None,
+           'priceFeedType':'TMX',
+           'priceFeedRef':'https://www.preferredstockchannel.com/symbol/enb.prv.ca/',
+           'debtFeedType':None,
+           'debtFeedRef':None,
+           'percentOwnership':1,
+           'thresholds':[]})
 
 
 # insert 1748 Des Cassandres asset

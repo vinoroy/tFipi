@@ -1,12 +1,10 @@
 TODO
 ----
 
- - must install venv
- - mus install beautiful soup
 
 P1
 ---
- - create the preferred stock class
+ - create the preferred stock class --> work on the preferred stock channel scrapper
  - add a summary for the % est profit of the portfolio
  - verify the annual return
  - add titles to the grafs
